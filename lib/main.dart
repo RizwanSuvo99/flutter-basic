@@ -1,48 +1,32 @@
 import 'package:flutter/material.dart';
 
 void main(){
-  runApp(const MaterialApp(title:"My-first-App",home: SafeArea(child: MyHomePage(),)));
+  runApp(
+    const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: "Stack Venger",
+      home:  MyApp()
+    )
+  );
 }
 
-class MyHomePage extends StatelessWidget{
-  const MyHomePage({super.key});
+
+class MyApp extends StatelessWidget{
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context){
-    return Material(
-      child: Column(
-        children: [
-           MyAppTopBar(
-            title: Text(
-              "This is Nazim",
-              style: Theme.of(context).primaryTextTheme.titleLarge
-            )
-
-          )
+    return Scaffold(
+      appBar: AppBar(
+        leading: const IconButton(onPressed: null, icon: Icon(Icons.menu), tooltip: "Menu Icon"),
+        title: const Text("Stack Venger"),
+        actions:const [
+          IconButton(onPressed: null, icon: Icon(Icons.search),tooltip: "Search Icon",)
         ],
       ),
+      floatingActionButton: FloatingActionButton(onPressed: (){},child: Icon(Icons.add),),
     );
   }
+
 }
 
-class MyAppTopBar extends StatelessWidget{
-  const MyAppTopBar({required this.title, super.key});
-  final Widget title;
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 60,
-      padding: EdgeInsets.symmetric(vertical: 8),
-      decoration: BoxDecoration(color: Colors.blue[700]),
-      child: Row(
-        children: [
-          const IconButton(onPressed: null, icon: Icon(Icons.menu),tooltip: "Navigation Menu"),
-          Expanded(child: title),
-          const IconButton(onPressed: null, icon: Icon(Icons.search),tooltip: "Search"),
-        ],
-      ),
-    );
-  }
-}
